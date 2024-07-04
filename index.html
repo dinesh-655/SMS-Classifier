@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Detection</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #4a4a4a;
+        }
+        form {
+            max-width: 500px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        textarea {
+            width: 90%;
+            padding: 15px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"] {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4a4a4a;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            textarea {
+                padding: 10px;
+                font-size: 14px;
+            }
+            input[type="submit"] {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>SMS Spam Detection</h1>
+    <form action="/predict" method="post">
+        <label for="sms_text"><b>Enter SMS:</b></label><br>
+
+        <textarea id="sms_text" name="sms_text" rows="4" placeholder="Enter your SMS message here..." required></textarea><br><br>
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction_result %}
+        <div class="result">
+            <h2>{{ prediction_result }}.</h2>
+        </div>
+    {% endif %}
+</body>
+</html>
